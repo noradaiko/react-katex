@@ -24,10 +24,14 @@ const createMathComponent = (Component, { displayMode }) => {
     }
 
     generateHtml(props) {
-      return KaTeX.renderToString(
-        props[this.usedProp],
-        { displayMode }
-      );
+      try {
+        return KaTeX.renderToString(
+          props[this.usedProp],
+          { displayMode }
+        );
+      } catch (e) {
+        return `<span class='remark-katex-error'>${e.message}</span>`
+      }
     }
 
     render() {

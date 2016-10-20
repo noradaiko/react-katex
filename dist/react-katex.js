@@ -180,7 +180,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	      key: 'generateHtml',
 	      value: function generateHtml(props) {
-	        return _katex2.default.renderToString(props[this.usedProp], { displayMode: displayMode });
+	        try {
+	          return _katex2.default.renderToString(props[this.usedProp], { displayMode: displayMode });
+	        } catch (e) {
+	          return '<span class=\'remark-katex-error\'>' + e.message + '</span>';
+	        }
 	      }
 	    }, {
 	      key: 'render',
